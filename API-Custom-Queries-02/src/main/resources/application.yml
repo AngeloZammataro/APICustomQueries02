@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/devdbFlight2
+    username: root
+    password: S1V1sP4c3mP4r4B3llum
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
