@@ -3,7 +3,7 @@ package it.develhope.Angelo.API.Custom.Queries2.entities;
 import java.util.Random;
 
 public enum FlightStatus {
-    ON_TIME,
+    ONTIME,
     DELAYED,
     CANCELLED;
 

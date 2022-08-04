@@ -57,9 +57,14 @@ public class FlightController {
     public Page<Flight> getAllFlights(@RequestParam int page, @RequestParam int size){
         return flightRepository.findAll(PageRequest.of(page, size, Sort.by("fromAirport").ascending()));
     }
-
+/*
     @GetMapping("/status/{status}")
     public Page<Flight> getAllFlightsByStatus(@PathVariable FlightStatus status, @RequestParam int page, @RequestParam int size){
+        return flightRepository.findAllByStatus(status, (PageRequest.of(page, size)));
+    }
+*/
+    @GetMapping("/status")
+    public List<Flight> getAllFlightsByStatus(@RequestParam FlightStatus status, @RequestParam int page, @RequestParam int size){
         return flightRepository.findAllByStatus(status, (PageRequest.of(page, size)));
     }
 

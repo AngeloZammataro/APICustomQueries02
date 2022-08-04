@@ -8,15 +8,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface FlightRepository extends JpaRepository<Flight,Long> {
-    @Query("select f from Flight f where f.flightStatus = ?0")
-    Page<Flight> findAllByStatus(FlightStatus flightStatus, Pageable pageable);
 
-    @Query("select f from Flight f where f.flightStatus = p1 OR f.flightStatus = p2")
-    List<Flight> getCustomFlight(FlightStatus p1, FlightStatus p2);
+    @Query("select f from Flight f where f.flightStatus = :status")
+    List<Flight> findAllByStatus(@Param("status") FlightStatus status, Pageable pageable);
 
-
+    @Query("select f from Flight f where f.flightStatus = :p1 OR f.flightStatus = :p2")
+    List<Flight> getCustomFlight(@Param("p1") FlightStatus p1, @Param("p2") FlightStatus p2);
 }
