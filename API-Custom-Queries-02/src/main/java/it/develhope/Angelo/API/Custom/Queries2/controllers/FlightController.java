@@ -57,40 +57,15 @@ public class FlightController {
     public Page<Flight> getAllFlights(@RequestParam int page, @RequestParam int size){
         return flightRepository.findAll(PageRequest.of(page, size, Sort.by("fromAirport").ascending()));
     }
-/*
-    @GetMapping("/status/{status}")
-    public Page<Flight> getAllFlightsByStatus(@PathVariable FlightStatus status, @RequestParam int page, @RequestParam int size){
-        return flightRepository.findAllByStatus(status, (PageRequest.of(page, size)));
-    }
-*/
+
     @GetMapping("/status")
-    public List<Flight> getAllFlightsByStatus(@RequestParam FlightStatus status, @RequestParam int page, @RequestParam int size){
-        return flightRepository.findAllByStatus(status, (PageRequest.of(page, size)));
+    public List<Flight> getAllFlightsByStatus(){
+        return flightRepository.findByFlightStatus(FlightStatus.ONTIME);
     }
 
     @GetMapping("/custom")
     public List<Flight> getCustomFlight(@RequestParam FlightStatus p1, @RequestParam FlightStatus p2){
         return flightRepository.getCustomFlight(p1, p2);
     }
-
-    /*
-    //provisioning of 50 flights
-    @GetMapping("/loadFlight")
-    public List<Flight> getAllLoadFlightX(){
-        List<Flight> flights = new ArrayList<>();
-        for (int i = 1; i <= 50; i++) {
-            flights.add(new Flight(i, generateRandomValueForFlight(), generateRandomValueForFlight(),generateRandomValueForFlight(),ON_TIME));
-        }
-        flightRepository.saveAllAndFlush(flights);
-        return flights;
-    }
-
-    //retrieving all the flights in the db
-    @GetMapping()
-    public List<Flight> getAllFlight(){
-        return flightRepository.findAll();
-    }
-
-     */
 }
 
